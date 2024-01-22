@@ -2,7 +2,7 @@ from typing import Final
 import os
 from dotenv import load_dotenv
 from discord import Intents, Message
-from responses import get_response, get_random_quote, get_random_challenge
+from responses import get_response, get_random_quote, get_random_challenge, add_new_challenge, list_all_challenges
 from discord.ext import commands
 
 load_dotenv()
@@ -25,6 +25,14 @@ async def quote(ctx):
 @client.command(name='challenge')
 async def challenge(ctx):
     await ctx.send(get_random_challenge(PATH_TO_JSON))
+
+@client.command(name='add')
+async def add(ctx, url: str):
+    await ctx.send(add_new_challenge(PATH_TO_JSON, url))
+
+@client.command(name='list')
+async def list(ctx):
+    await ctx.send(list_all_challenges(PATH_TO_JSON))
 
 @client.event
 async def on_message(message: Message) -> None:
