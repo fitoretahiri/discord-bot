@@ -14,3 +14,5 @@ ChatQuotient-Bot is a simple chat bot, created with Python. With this bot, I sol
 - The chatbot does not duplicate the challenges in the JSON object, if the challenge already exists it returns URL already exists:{url} 
 - When adding a new challenge, the title is extracted from the website with the provided url.
 - Since Discord does not allow to add more than 2000 characters in one message, the data was separated into chunks. Another way to list all the data is by creating a txt file but it is more visually appealing in this way.
+## Installation and how to use the chatbot
+ChatQuotient-Bot is public. It can be used by everyone using the following link: https://discord.com/api/oauth2/authorize?client_id=1198782536118194338&permissions=17179953152&scope=bot
