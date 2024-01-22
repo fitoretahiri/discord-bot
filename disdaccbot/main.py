@@ -1,16 +1,17 @@
 from typing import Final
 import os
 from dotenv import load_dotenv
-from discord import Intents, Client, Message
-from responses import get_response, get_random_quote
+from discord import Intents, Message
+from responses import get_response, get_random_quote, get_random_challenge
 from discord.ext import commands
 
 load_dotenv()
 TOKEN: Final[str] = os.getenv("DISCORD_TOKEN")
+API_KEY: Final[str] = os.getenv("API_KEY")
+PATH_TO_JSON: Final[str] = os.getenv("PATH_TO_JSON")
 
 intents: Intents = Intents.default()
 intents.message_content = True
-# client: Client = Client(intents=intents)
 client = commands.Bot(command_prefix = '!', intents=intents)
 
 @client.event
@@ -19,7 +20,11 @@ async def on_ready() -> None:
 
 @client.command(name='quote')
 async def quote(ctx):
-    await ctx.send(get_random_quote())
+    await ctx.send(get_random_quote(API_KEY))
+
+@client.command(name='challenge')
+async def challenge(ctx):
+    await ctx.send(get_random_challenge(PATH_TO_JSON))
 
 @client.event
 async def on_message(message: Message) -> None:
